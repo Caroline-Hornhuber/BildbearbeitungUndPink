@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <title>Pink and Grafikdesign</title>
+        <link rel="stylesheet" href="style.css">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    </head>
+    <body>
+    <div id="menu-ph"></div>
+        <div class="background-2"id="myDIV2"></div>
+        <div class="main-content card">
+            <h1><b style="font-weight: bold;">ˏ 𓏧 𓏲 𓏲 𓏲 𓋒Photoshop𓋒 𓏲 𓏲 𓏲 𓏲 𓏧 ˎ</b></h1>
+            <p>Adobe Photoshop is a professional image editing software program that lets you edit and modify digital photographs. Numerous fields, including photography, graphic design, and web development, use it extensively.</p>
+
+            <p>With Photoshop, you can perform a range of tasks such as adjusting the brightness and contrast, color correction, retouching, removing unwanted elements, adding text and graphics, and much more. It also offers a variety of tools and filters to enhance images, and a comprehensive layer system that allows you to make non-destructive edits.</p>
+            <h2>What does it cost?</h2>
+            <p>Photoshop is a creative cloud product, wich costs around 50 euros/month <br>bying the app alone is around 20 euros a month<br>Luckily photoshop offers alot of discounts, on our school as example there was an action where you pay six euros a year for creative cloud.</p>
+            <h2>‧̍̊˙· 𓆝.° ｡˚𓆛˚｡ °.𓆞 ·˙‧̍̊</h2>
+        </div>
+        <div class="background-1"id="myDIV3"></div>
+        <div class="main-content card">
+            <h1><b style="font-weight: bold;">ˏ 𓏧 𓏲 𓏲 𓏲 𓋒 𓏲 𓏲 𓏲 𓏲 𓏧 ˎ</b></h1>
+            <h2>what does it offer?</h2>
+            <p>Its a professional tool thats wiedly used and you can fiend many tutorial on youtube, mostly by indians.</p>
+            <p>Its easy to lern and you have a variety of tools you can use. There are even some ai based tools.</p>
+            <p>Layers are very practical as you have non destrukting editing</p>
+            <p>Photoshop is often updated with new features.</p>
+            <p>you can even make your own tools for it</p>
+            <h2>What are free alternatives?</h2>
+            <p>                Paint<br>
+                Paint.net<br>
+                Affinity Designer<br>
+                Canva<br>
+                GIMP</p></p>
+            <h2>‧̍̊˙· 𓆝.° ｡˚𓆛˚｡ °.𓆞 ·˙‧̍̊</h2>
+        </div>
+
+        <div id="footer-ph"></div>
+    </body>
+<script>
+
+    $(function(){
+        $("#footer-ph").load("Components/footer.html");
+    });
+
+    $(function(){
+        $("#menu-ph").load("Components/header.html");
+    });
+
+        function changecolor(){
+            document.body.classList.toggle("dark-mode");
+            var  element = document.getElementById("myDIV1");
+            element.classList.toggle("text-dark");
+            element = document.getElementById("myDIV2");
+            element.classList.toggle("background-1-dark");
+            element = document.getElementById("myDIV3");
+            element.classList.toggle("background-2-dark");
+            element = document.getElementById("myDIV4");
+            element.classList.toggle("background-3-dark");
+            localStorage.setItem('mode', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+
+        }
+        window.onload = function() {
+            const toggle = document.getElementById('toggle-mode');
+            const mode = localStorage.getItem('mode');
+
+            if (mode === 'dark') {
+                toggle.checked = mode === 'dark';
+                changecolor();
+            }
+        };
+    </script>
+</html>

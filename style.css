@@ -1,0 +1,263 @@
+  /*fonts*/
+  @font-face {
+  font-family: UWU;
+  src: url(AkayaTelivigala-Regular.ttf);
+  }
+  @font-face {
+  font-family: UWU2;
+  src: url(HashedBrowns-WyJgn.ttf);
+  }
+
+  /*basic*/
+  body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+    background-color: #fef2f4;
+  color: palevioletred;
+    z-index: -3;
+  }
+
+  /* adjustments */
+
+  h1{
+   padding-bottom: 5px;
+  }
+
+  h2{
+    padding-bottom: 20px;
+    padding-top: 5px;
+  }
+
+
+  /* ueberblick */
+
+  .test{
+
+    padding: 130px 100px 10px 100px;
+    margin: 0;
+    text-align: center;
+    position: relative;
+    background: url("/Deco/wavyBG.png");
+
+  }
+
+.pages{
+  font-family: "Segoe UI Black";
+  padding: 20px;
+  background-color: #e87ea1;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 3px 3px 8px rgba(192, 28, 68, 0.45);
+  z-index: 0;
+
+}
+
+.pages a{
+  color: white;
+  text-decoration: none;
+  padding: 60px;
+  font-size: 40px;
+  text-shadow: 1px 1px 4px #c01c44;
+
+}
+
+.card_bg{
+  position: relative;
+  background: url("/Deco/wavyBG.png");
+  z-index: -99;
+}
+
+
+
+
+/* Pink Card */
+.card-1{
+  text-align: center;
+  position: relative;
+
+  border-radius: 0 0 30px 30px  ;
+  background-color: #fdfad4;
+  padding: 40px;
+  margin: 0 100px 0 100px;
+  box-shadow: 3px 3px 8px rgb(188, 230, 236);
+
+
+}
+
+.card-1 h1{
+  
+  font-size: 40px;
+  color: #332828;
+
+  z-index: 1;
+
+}
+
+.card-1 h2{
+  font-size: 30px;
+  color: #332828;
+
+  z-index: 1;
+}
+
+.card-1 p{
+  margin-left: auto;
+
+  position: relative;
+  font-size: 23px;
+  color: #161225;
+  z-index: 1;
+}
+
+
+.card_bg .blueWave {
+
+  padding-top: 230px;
+  right: 645px;
+  position: absolute;
+  height: 400px;
+
+}
+
+.card_bg .coconut{
+  position: absolute;
+  left: 1400px;
+  z-index: 2;
+  bottom: 280px;
+
+}
+
+
+/* Psychology of pink*/
+  .card-2{
+    height: 300px;
+  }
+
+  /*backgrounds*/
+  /*.background-1{
+  background-image: url("/pics/uwu.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 40vw;
+  }
+  .background-2{
+  background-image: url("/pics/background1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 37vw;
+  }
+  .background-3{
+  background-image: url("/pics/background2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 37vw;
+  }
+  .background-other{
+  background-image: url("/pics/background1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vm;
+  }
+*/
+
+ /* .background-1-dark{
+  background-image: url("/pics/background1-dark.png")
+  }
+  .background-2-dark{
+  background-image: url("/pics/background2-dark.png");
+  }
+  .background-3-dark{
+  background-image: url("/pics/background3-dark.png");
+  }*/
+
+
+
+
+  /*menü*/
+  #menu__toggle {
+  opacity: 0;
+  }
+  #menu__toggle:checked+.menu__btn>span {
+  transform: rotate(45deg);
+  }
+  #menu__toggle:checked+.menu__btn>span::before {
+  top: 0;
+  transform: rotate(0deg);
+  }
+  #menu__toggle:checked+.menu__btn>span::after {
+  top: 0;
+  transform: rotate(90deg);
+  }
+  #menu__toggle:checked~.menu__box {
+  right: 0 !important;
+  }
+  .menu__btn {
+  position: fixed;
+  top: 2.6vw;
+  right: 0.5vw;
+  width: 2vw;
+  height: 2vw;
+  z-index: 30;
+  }
+  .menu__btn>span,
+  .menu__btn>span::before,
+  .menu__btn>span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 1.5px;
+  background-color: white;
+  transition-duration: .25s;
+  }
+  .menu__btn>span::before {
+  content: '';
+  top: -8px;
+  }
+  .menu__btn>span::after {
+  content: '';
+  top: 8px;
+  }
+  .menu__box {
+  display: block;
+  position: fixed;
+  top: -0.5vw;
+  right: -100%;
+  width: 20vw;
+  height: 24vw;
+  list-style: none;
+  padding: 0 0;
+  background: #fedee3;
+  box-shadow: white;
+  transition-duration: .25s;
+
+  border-radius: 2vw 0 0 2vw;
+  }
+  .cont{
+  padding: -4vw 0;
+  }
+  .menu__item {
+  display: block;
+  padding: 2vw 2vw;
+  top:1vw;
+  color: white;
+  font-size: 20px;
+  font-weight: 1.5px;
+  transition-duration: .25s;
+  position: relative;
+  font-size: 1.5vw;
+  }
+
+  /*responsive*/
+  @media(max-width: 767px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+  }
+  }
+  @media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+  }
+  }

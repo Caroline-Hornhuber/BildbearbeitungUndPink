@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Drawing App</title>
+        <link rel="stylesheet" href="editingstyle.css">
+    </head>
+    <body>
+      <div class="navbar" id="navbar">
+        <a class="resp_img"href="index.html"><img src="pics/icons/logo_schrift.png" class="resp_img"  ></a>
+        <a  class="menu_item_selected tab"onclick="selectMenuDraw()" id="menu_draw" style="padding:1.7vw;"><img src="pics/icons/i-draw.png" width=20vw; >Draw</a>
+        <a  class="tab"onclick="selectMenuFilters()" id="menu_filters"style="padding:1.7vw;"><img src="pics/icons/i-filter.png" width=20vw;>Filters</a>
+        <a class="tab"onclick="selectMenuFroms()"id="menu_forms"style="padding:1.7vw;"><img src="pics/icons/i-forms.png" width=20vw;>Forms</a>
+        <a class="tab"onclick="selectMenuText()" id="menu_text"style="padding:1.7vw;"><img src="pics/icons/i-text.png" width=20vw;>Text</a>
+        <a class="tab"onclick="selectMenuLoad()"id="menu_load"style="padding:1.7vw;"><img src="pics/icons/i-image.png" width=20vw;>Image</a>
+        <a class="tab"onclick="selectMenuAI()"id="menu_ai"style="padding:1.7vw;"><img src="pics/icons/i-ai.png" width=20vw;>AI<img src="pics/icons/NEU.png" width=40vw></a>
+        <label class="switch" style="float: right;">
+          <input type="checkbox" id="toggle-mode"onclick="changecolor()">
+          <span class="slider"></span>
+        </label>
+      </div><!--navbar-->
+        <div >
+            <canvas id="canvas" width="500" height="500"></canvas>
+            <canvas id="tempcanvas" width="500" height="500"></canvas>
+            <canvas id="cursercanvas" width="500"height="500"></canvas>
+            <div class="box" hidden="true" id="textcursor"></div><!--cursor-->
+        </div><!--canvas -->
+        <div>
+            <ul class="opt__box" id ="opt__box">
+              <br>
+                <div id="opt_draw">
+                  <div id="standardColors">
+                    <input  class="color" type="color" id="colorPicker" value="#000000">
+                    <div class="color rbw"id="rainbowButton" style="width: 2.5vw; height: 2.5vw; background: linear-gradient( to bottom right,rgb(255, 122, 122),rgb(255, 255, 26),rgb(141, 255, 141),rgb(112, 112, 255),rgb(215, 160, 255),violet); cursor: pointer;"></div>
+                    <div class="color" style="background-color: #000000;"></div>
+                    <div class="color" style="background-color: #FF0000;"></div>
+                    <div class="color" style="background-color: #00FF00;"></div>
+                    <div class="color" style="background-color: #0000FF;"></div>
+                    <div class="color" style="background-color: #FFFF00;"></div>
+                    <div class="color" style="background-color: #FF00FF;"></div>
+                    <div class="color" style="background-color: #00FFFF;"></div>
+                    <div class="color" style="background-color: #FFFFFF;"></div>
+                    <div class="color" style="background-color: #FFA500;"></div>
+                    <div class="color" style="background-color: #8c00ff;"></div>
+                    <img src="pics/eraser.png" class="color ers" id="eraser" width="2.5vw"height="2.5vw">
+                    <img src="pics/bucket.png" class="color fill" id="fill" width="2.5vw"height="2.5vw">
+                  </div>
+                  <br>
+                  <label for="brushSize">Brush Size:</label>
+                  <input class="opt_slider" type="range" id="brushSize" min="1" max="150" value="10">
+                  <label for="brushOpacity">Opacity:</label>
+                  <input class="opt_slider" type="range" id="brushOpacity" min="1" max = "255" value="255">
+                </div>
+                <div id="opt_filters"  hidden="true">
+                  <label for="hue">Hue:</label>
+                  <input class="opt_slider"type="range" id="hue" min="-180" max="180" value="0">
+                  <label for="blur">Blur:</label>
+                  <input class="opt_slider"type="range" id="blur" min="0" max="25" step="0.1" value="0">
+                  <label for="contrast">Contrast:</label>
+                  <input class="opt_slider"type="range" id="contrast" min="0" max="200"  value="100">
+                  <label for="exposure">Exposure:</label>
+                  <input class="opt_slider"type="range" id="exposure" min="-5" max="5" step="0.1" value="0">
+                  <label for="brightness">Brightness:</label>
+                  <input class="opt_slider"type="range" id="brightness" min="0" max="200" value="100">
+                  <label for="saturation">Saturation:</label>
+                  <input class="opt_slider"type="range" id="saturation" min="0" max="200" value="100">
+                  <label for="grayscale">Gray-scale:</label>
+                  <input class="opt_slider"type="range" id="grayscale" min="0" max="100" value="0">
+                  <label for="invert">Invert</label>
+                  <input class="opt_slider"type="range" id="invert" min="0" max="100" value="0">
+                </div>
+                <div id="opt_forms"  hidden="true">
+                  <div id="forms-selector">
+                    <label >Form:</label>
+                    <select id="forms-select" size="1">
+                      <option value="forms_line" class="forms-option">Line</option>
+                      <option value="forms_tri" class="forms-option">Triangle</option>
+                      <option value="forms_rect" class="forms-option">Rectangle</option>
+                      <option value="forms_circle" class="forms-option">Circle</option>
+                      <option value="forms_elypse" class="forms-option">Elipse</option>
+                      <option value="forms_anygon" class="forms-option">Any-Gon</option>
+                      <option value="forms_polygon" class="forms-option">Polygon</option>
+                      <option value="forms_heart" class="forms-option">Heart</option>
+                    </select>
+                  </div>
+                  <div id="forms-type-selector">
+                    <label >DrawMode:</label>
+                    <select id="forms-type-select" size="1">
+                      <option value="o" class="forms-option">Outline</option>
+                      <option value="f" class="forms-option">Fill</option>
+                      <option value="of" class="forms-option">OutLine+Fill</option>
+                    </select>
+                  </div>
+                  <input  class="color" type="color" id="colorPicker_f1" value="#000000">
+                  <input  class="color" type="color" id="colorPicker_f2" value="#000000">
+                  <div id="forms_line"hidden=true>
+                  </div>
+                  <div id="forms_tri"hidden=true>
+                    <label >Rectangular:</label>
+                    <input value="true"type="checkbox" id="f_tri_bx">
+                  </div>
+                  <div id="forms_rect"hidden=true>
+                    <label >f_corners:</label>
+                    <input class="opt_slider" type="range" id="f_corners" min="0" max = "50" value="0">
+                  </div>
+                  <div id="forms_circle"hidden=true>
+                  </div>
+                  <div id="forms_elypse"hidden=true>
+                  </div>
+                  <div id="forms_anygon"hidden=true>
+                  </div>
+                  <div id="forms_polygon"hidden=true>
+                    <input class="opt_slider" type="range" id="f_pcorners" min="2" max = "16" value="6">
+                    <p id ="f_p_txt"></p>
+                  </div>
+                  <div id="forms_heart"hidden=true>
+                  </div>
+                </div>
+                <div id="opt_text"  hidden="true">
+                  <div id="standardColorsText">
+                    <input  class="color pik" type="color" id="colorPickerText" value="#000000">
+                    <div class="color" style="background-color: #000000;"></div>
+                    <div class="color" style="background-color: #FF0000;"></div>
+                    <div class="color" style="background-color: #00FF00;"></div>
+                    <div class="color" style="background-color: #0000FF;"></div>
+                    <div class="color" style="background-color: #FFFF00;"></div>
+                    <div class="color" style="background-color: #FF00FF;"></div>
+                    <div class="color" style="background-color: #00FFFF;"></div>
+                    <div class="color" style="background-color: #FFFFFF;"></div>
+                    <div class="color" style="background-color: #FFA500;"></div>
+                    <div class="color" style="background-color: #8c00ff;"></div>
+                  </div>
+                  <label for="Textsize">Size:</label>
+                  <input class="opt_slider"type="range" id="Textsize" min="10" max="200" value="20">
+                  <div id="font-selector">
+                  <label for="font-select">Font:</label>
+                    <select id="font-select" size="1">
+                      <option style="font-family:Arial;" value="Arial" class="font-option">Arial</option>
+                      <option style="font-family:Verdana;" value="Verdana" class="font-option">Verdana</option>
+                      <option style="font-family:Tahoma;" value="Tahoma" class="font-option">Tahoma</option>
+                      <option style="font-family:Trebuchet MS;" value="Trebuchet MS" class="font-option">Trebuchet MS</option>
+                      <option style="font-family:Impact;" value="Impact" class="font-option">Impact</option>
+                      <option style="font-family:Comic Sans MS;" value="Comic Sans MS" class="font-option">Comic Sans MS</option>
+                      <option style="font-family:Georgia;" value="Georgia" class="font-option">Georgia</option>
+                      <option style="font-family:Times New Roman;" value="Times New Roman" class="font-option">Times New Roman</option>
+                      <option style="font-family:Courier New;" value="Courier New" class="font-option">Courier New</option>
+                      <option style="font-family:Lucida Console;" value="Lucida Console" class="font-option">Lucida Console</option>
+                      <option style="font-family:Tahoma;" value="Tahoma" class="font-option">Tahoma</option>
+                      <option style="font-family:Arial Black;" value="Arial Black" class="font-option">Arial Black</option>
+                      <option style="font-family:Garamond;" value="Garamond" class="font-option">Garamond</option>
+                      <option style="font-family:Helvetica;" value="Helvetica" class="font-option">Helvetica</option>
+                      <option style="font-family:Wide Latin;" value="Wide Latin" class="font-option">Wide Latin</option>
+                      <option style="font-family:Cooper Black;" value="Cooper Black" class="font-option">Cooper Black</option>
+                      <option style="font-family:Mistral;" value="Mistral" class="font-option">Mistral</option>
+                    </select>
+                  </div>
+                  <label for="textinput">Text:</label><br>
+                  <textarea id="textinput"></textarea>
+                </div>
+                <div id="opt_load"  hidden="true">
+                  <button id="downloadButton">Download</button>
+                  <input type="file" id="imageUpload">
+                </div>
+                <div id="opt_ai" hidden="true">
+                  <label for="aitextinput">Prompt:</label><br>
+                  <textarea id="aitextinput"></textarea>
+                  <button class="aimenubtn" id= "aimenubutton">Generate BETA</button>
+                  <p id ="ichwillkeineidnamenmehrvergeben">3/3 uses left</p>
+                </div>
+            </ul>
+        </div><!--option box -->
+        <div>
+          <div class="layer-box"id="layer-box">
+            <li class="menuButtons"><button class="undoButton"id="undoButton">Undo</button><button class="redoButton"id="redoButton">Redo</button><button class="clearButton"id="clearButton">Clear</button></li>
+            <div>
+              <label for="layer-select">Layer:</label>
+              <select id="layer-select"></select><br>
+              <button class ="layer-btn"id="add-layer-btn"><img src="pics/Neuer Ordner/i-add.png"title="Add Layer"></button>
+              <button class ="layer-btn"id="delete-layer-btn"><img src="pics/Neuer Ordner/i-rem.png"title="Delete Layer"></button>
+              <button class ="layer-btn"id="duplicate-layer-btn"><img src="pics/Neuer Ordner/i-dup.png"title="Duplicate Layer"></button>
+              <button class ="layer-btn"id="merge-layers-btn"><img src="pics/Neuer Ordner/i-mrg.png"title="Merge with Layer underneath"></button>
+              <button class ="layer-btn"id="layer-up-btn"><img src="pics/Neuer Ordner/i-mup.png"title="move up"></button>
+              <button class ="layer-btn"id="layer-down-btn"><img src="pics/Neuer Ordner/i-mdo.png"title="move down"></button>
+            </div>
+            <div id="layers-container"></div>
+          </div>
+        </div><!--layer box-->
+        <div class="info" id="info">
+          <!-- @azra hier info dazutuhen bei jedem-->
+            <div id="info_draw">
+              <b>
+                <h1>Documentation / Draw:</h1>
+                  <h2>Color selection:</h2>
+                  To select colors, there is a palette with predefined colors located in the top right corner. If you click on the first black box, you can also create a custom color by simply clicking on a spot with the desired color. The second block with the gay flag lets you draw a rainbow!
+                  <h2>Eraser:</h2>
+                  The eraser is used to delete the areas you want to remove, just click on the canvas.
+                  <h2>Fill:</h2>
+                  The bucket symbol is used to fill an area with a colour, just click and drag on the canvas.
+                  <h2>Brush size:</h2>
+                  The "Brush Size" refers to the size of the brush or drawing tools. With a larger brush size, you can create broader lines or areas.
+                  <h2>Opacity:</h2>
+                  The "Opacity" determines how transparent or opaque the applied stroke of color is to achieve different effects and create shading or overlays. </b>
+            </div>
+            <div id="info_filters" hidden="true">
+                <b>
+                  <h1>Documentation / Filters</h1>
+                  <h2>FILTERS:
+                  Hue, Blur, Contrast, Exposure, Brightness, Saturation, Gray-scale, Invert</h2>
+                  <br>
+                  Hue: Adjusts the color tone rotating on the colour weel.<br>
+                  Blur: Blurs or softens images.<br>
+                  Contrast: Adjusts the differences between light and dark areas.<br>
+                  Exposure: Controls the brightness of the image.<br>
+                  Brightness: Controls the overall brightness of the image.<br>
+                  Saturation: Adjusts the intensity of colors.<br>
+                  Gray-scale: Converts the image to black and white.<br>
+                  Invert: Reverses colors and contrasts.<br>
+                </b>
+            </div>
+            <div id="info_forms" hidden="true">
+                <b>
+                  <h1>Documentation / Shapes</h1>
+                  <h2>Shape:</h2> In this section, you can enter the desired shape. To Make a Shape, choose one from the dropdown menue and click and drag on the canvas.
+                  <h2>DrawMode:</h2> This option allows you to specify whether the inner part, outer part, or both of the shape should be filled.<br>
+                  <h2>line:</h2>makes a basic line
+                  <h2>Trianle:</h2>makes a basic tricangle, check the box to make it with an 90° angle
+                  <h2>Rectangle:</h2>makes a basic rectangle, you can make the corners round
+                  <h2>Circle:</h2>makes a circle 
+                  <h2>Elypse:</h2>makes a elypse(a wierd circle)
+                  <h2>Any-Gon:</h2>makes any kind of shape with straight edges. ad corners by clicking on the canvas
+                  <h2>Poly-Gon:</h2>makes a shape with at least two corners, you can adjust the amount of corners
+                  <h2>hears:</h2>creates a heart!
+                </b>
+            </div>
+            <div id="info_text" hidden="true">
+                <b>
+                  <h1>Documentation / Text</h1>
+                    on the canvas click and drag to moce the curser
+                    <h2>Colors:</h2> Inside the boxes, you can select your desired font color. The first black box allows you to create your own color by clicking on the desired color with the mouse.
+                    <h2>Size:</h2> Decide how big the text should be.
+                    <h2>Font:</h2> Here, you can select and use the desired font style.
+                    <h2>Text:</h2> In the table, you can enter your text and position it within the frame.
+                </b>
+            </div>
+            <div id="info_load" hidden="true">
+                <b>
+                  <h1>Documentation / Image</h1>
+                  you can download and upload images
+                </b>
+            </div>
+            <div id="info_ai" hidden="true">
+              <b>
+                <h1>Documentation / Artificial Image Generation</h1>
+                *This tab is still in beta mode so bugs may accure, *<br>
+                we are using a pre trained model to make images out of prompts,<br>
+                there is a filter built in so you cant generate hate, herassment, violence, sh, sexual, shoking, deception, political, health, spam and of course not any illeggal images<br>
+                to use it just type in any text eg(a pink dog and a blue cat playing on a field) and click generate, then wait a vew seconds,<br><br>
+                <h2>NOTE:</h2> if nothing happes we eather need to replace a key in our system or the service we are using has a problem<br>
+                also after generating an image the undo/redo functions will be a little broken, sorry for the inconvinience
+              </b>
+            </div>
+            <b>
+              <h1>Documentation / Layers</h1>
+              Using the "New Layer" feature allows you to create multiple layers. Each layer allows you to draw and save different frames. 
+              Additionally, you can choose on which layer you want to draw. 
+              With the "Delete Layer" option, you can delete a specific layer. 
+              By selecting "Duplicate Layer," you can make a copy of the desired layer. 
+              Clicking on "Merge Layers" merges the current layer with the one underneeth it.
+              you can also move an layer up and down
+              layers will only be displayed if checkbox is checked
+            </b>
+        </div><!--info box -->
+        <script src="editingcode.js"></script>
+    </body>
+</html>
