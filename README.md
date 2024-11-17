@@ -1,6 +1,6 @@
-WICHTIG!!!!!!: DIESES PROJEKT IST IN KOLLABORATION MIT LEJLA MUSIC UND AZRA ÖZDEMIR ENTSTANDEN, (das meiste hab aber ich gemacht ... :P)\n
-wichtig: richtige file: Picture-editing.html\n
-auserdem geht der api key nimma :(\n
+WICHTIG!!!!!!: DIESES PROJEKT IST IN KOLLABORATION MIT LEJLA MUSIC UND AZRA ÖZDEMIR ENTSTANDEN, (das meiste hab aber ich gemacht ... :P) \n
+wichtig: richtige file: Picture-editing.html \n
+auserdem geht der api key nimma :( \n
 ![This is a alt text.](/pics/uwuheader.png)
 # 1. Mitglieder
 Caroline Hornhuber, Azra Nohut, Lejla Music
